@@ -1,0 +1,34 @@
+emptydb = """
+PRAGMA foreign_keys = ON;
+
+create table singer
+(id integer primary key,
+name text,
+year integer,
+surname text,
+nickname text);
+
+create table song
+(id integer primary key,
+name text,
+year integer,
+duration text);
+
+create table groupp
+(id integer primary key,
+name text,
+year integer,
+producer text);
+
+create table groupp_singer
+(id integer primary key autoincrement,
+groupp integer references groupp(id) on update cascade on delete cascade,
+singer integer references singer(id) on update cascade on delete cascade,
+unique(groupp,singer));
+
+create table groupp_song
+(id integer primary key autoincrement,
+groupp integer references groupp(id) on update cascade on delete cascade,
+song integer references song(id) on update cascade on delete cascade,
+unique(groupp,song));
+"""

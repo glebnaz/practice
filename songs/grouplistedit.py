@@ -1,0 +1,26 @@
+from group import group
+from generallistedit import generalListEdit
+
+class groupListEdit(generalListEdit):
+  def newRec(self, id=0, name='', year=0, producer=''): self.appendList(group(id, name, year, producer))
+  def setProducer(self,id,value): self.findById(id).setProducer(value)
+  def getProducer(self,id): return self.findById(id).getProducer()
+  def appendSinger(self,id,value): self.findById(id).appendSinger(value)
+  def getYear(self, id): return self.findById(id).getYear()
+  def removeSinger(self,bid,aid): self.findById(bid).removeSinger(aid)
+  def clearSingers(self,id): self.findById(id).clearSingers()
+  def getSingerId(self,id): return self.findById(id).getSingerId()
+  def getSingerSurname(self, bid,aid): return self.findById(bid).getSingerSurname(aid)
+  def getSingerName(self, bid, aid): return self.findById(bid).getSingerName(aid)
+  def getSingerYear(self, bid, aid): return self.findById(bid).getSingerYear(aid)
+  def getSongYear(self, bid, aid): return self.findById(bid).getSongYear(aid)
+  def getSingerNickname(self, bid, aid): return self.findById(bid).getSingerNickname(aid)
+  def getSingerIds(self,id): return self.findById(id).getSingerIds()
+  def appendSong(self,id,value): self.findById(id).appendSong(value)
+  def removeSong(self,bid,aid): self.findById(bid).removeSong(aid)
+  def clearSongs(self,id): self.findById(id).clearSongs()
+  def getSongId(self,id): return self.findById(id).getSongId()
+  def getSongName(self,bid,aid): return self.findById(bid).getSongName(aid)
+  def getSongDuration(self,bid,aid): return self.findById(bid).getSongDuration(aid)
+  def getSongIds(self,id): return self.findById(id).getSongIds()
+  def getDescription(self,id): return self.findById(id).getDescription()
