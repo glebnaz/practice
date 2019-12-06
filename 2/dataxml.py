@@ -89,6 +89,8 @@ class dataxml:
         for appealId in self.appealList:
             appeal = self.appealList[appealId]
             appealXml = doc.createElement("appeal")
+            appealXml.setAttribute("diagnosis",appeal.get_Diagnosis())
+            appealXml.setAttribute("cost",appeal.get_Cost())
             doctor = appeal.get_Doctor()
             doctorXmlAppeal = doc.createElement("doctor")
             doctorXmlAppeal.setAttribute('first_name', doctor.get_first_name())
