@@ -6,7 +6,7 @@ class performances:
 
     def setId(self,value):
         print("Set ID")
-        self.__Id = value
+        self.__id = value
 
     def setName(self,value):
         print("Set Name")

@@ -2,90 +2,12 @@ import xml.dom.minidom
 from actor import actor
 from performances import performances
 from labor import labor
-import sqlite3 as db
-
-emptydb = """
-PRAGMA foreign_keys = ON;
-
-create table actor
-(id integer primary key,
-first_name text,
-last_name text,
-father_name text,
-rank text,
-experience text);
-
-create table performance
-(id integer primary key,
-name text,
-year text,
-budget text);
-
-
-create table labor
-(id integer primary key autoincrement,
-actor integer references actor(id) on update cascade on delete cascade,
-performance integer references performance(id) on update cascade on delete cascade,
-role text,
-cost text,
-unique(actor,performance))"""
 class dataWorker:
     def __init__(self,filename=""):
         self.filename = filename
         self.actorsList = dict()
         self.laborList = dict()
         self.performansessList = dict()
-
-
-    def writeDb(self,out):
-        conn = db.connect(out)
-        curs = conn.cursor()
-        curs.executescript(emptydb) #if you start at first time
-        self.parseXml()
-        #write performances
-        for performancesId in self.performansessList:
-            performances = self.performansessList[performancesId]
-            curs.execute("insert into performance(id,name,year,budget)values('%s','%s','%s','%s')"%(
-            performancesId,
-            performances.getName(),
-            performances.getyear(),
-            performances.getbudget()))
-        for actorId in self.actorsList:
-            actor = self.actorsList[actorId]
-            curs.execute("insert into actor(id,first_name,last_name,father_name,rank,experience)values('%s','%s','%s','%s','%s','%s')"%(
-            str(actorId),
-            str(actor.getfirstName()),
-            str(actor.getlastName()),
-            str(actor.getfatherName()),
-            str(actor.getrank()),
-            str(actor.getexperience())))
-        for laborId in self.laborList:
-            labor = self.laborList[laborId]
-            curs.execute("insert into labor(id,actor,performance,role,cost)values('%s','%s','%s','%s','%s')"%(
-            str(laborId),
-            str(labor.getactor().getId()),
-            str(labor.getperformances().getId()),
-            str(labor.getrole()),
-            str(labor.getCost())))
-        conn.commit()
-        conn.close()
-
-    def readDb(self,inp):
-        a = actor("Gleb","Nazemnov","Andreevich","glavnui","15")
-        p = performances("12 стульев","2015","322")
-        lab = labor(a,p,"Остап Бендер","20000000")
-        conn = db.connect(inp)
-        curs = conn.cursor()
-        curs.execute('select * from actor')
-        data=curs.fetchall()
-        for r in data:print(r)
-        curs.execute('select * from performance')
-        data=curs.fetchall()
-        for r in data:print(r)
-        curs.execute('select * from labor')
-        data=curs.fetchall()
-        for r in data:print(r)
-        conn.close()
 
     def parseActor(self):
         doc = xml.dom.minidom.parse(self.filename)
@@ -98,7 +20,6 @@ class dataWorker:
             rank = Actor.getAttribute("rank")
             expirience = Actor.getAttribute("expirience")
             newActor = actor(firstName,lastName,fatherName,rank,expirience)
-            newActor.setId(id)
             self.actorsList[id] = newActor
         print(self.actorsList)
 
@@ -112,7 +33,6 @@ class dataWorker:
             year = Performanses.getAttribute("year")
             budget = Performanses.getAttribute("budget")
             newperformanses = performances(name,year,budget)
-            newperformanses.setId(id)
             self.performansessList[id] = newperformanses
         print(self.performansessList)
 
@@ -128,7 +48,6 @@ class dataWorker:
             actor = self.actorsList[actorId]
             performanses = self.performansessList[performansesId]
             newlabor = labor(actor,performanses,data,cost)
-            newlabor.setId(id)
             self.laborList[id] = newlabor
         print(self.laborList)
 
@@ -183,7 +102,7 @@ class dataWorker:
         with open("newFile", "w") as f:
             f.write(xml_str)
 
-    def parseXml(self):
+    def parse(self):
         self.parseActor()
         self.parsePerformanses()
         self.parseLabor()

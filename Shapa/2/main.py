@@ -3,7 +3,7 @@ from performances import performances
 from labor import labor
 from dataWorker import dataWorker
 
-parser = dataWorker("2/data.xml")
-parser.parseXml()
+parser = dataWorker("data.xml")
+parser.parse()
+parser.writeXml()
 parser.writeDb("database.sqlite")
-parser.readDb("database.sqlite")

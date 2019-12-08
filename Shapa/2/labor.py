@@ -1,6 +1,3 @@
-from actor import actor
-from performances import performances
-
 class labor:
     def __init__(self,actor,performances,cost,role):
         self.setperformances(performances)
@@ -10,7 +7,7 @@ class labor:
 
     def setId(self,value):
         print("Set ID")
-        self.__Id = value
+        self.__id = value
 
     def setactor(self,value):
         print("Set actor")
@@ -43,20 +40,6 @@ class labor:
 
     def getrole(self):
         return self.__role
-
-    def newActor(self,id,firsName,lastName,fatherName,rank,expirience):
-        a = actor(firsName,lastName,fatherName,rank,expirience)
-        actor.setId(id)
-        self.setactor(a)
-
-    def newPerformance(self,id,name,year,budget):
-        p = performance(name,year,budget)
-        p.setId(id)
-        self.setperformances(p)
-    def newLabor(self,id,actor,spe,role,cost):
-        l = labor(actor,spe,role,cost)
-        l.setId(id)
-        return l
 
     def __str__(self):
         return str(self.getperformances()) + ", " + str(self.getactor()) + ", " + self.getCost() + ", " \
