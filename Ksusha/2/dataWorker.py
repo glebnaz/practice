@@ -101,7 +101,7 @@ class dataWorker:
         root.appendChild(credits)
         xml_str = doc.toprettyxml(indent="  ")
         file = "new"+self.filename
-        with open("newData.xml", "w") as f:
+        with open(file, "w") as f:
             f.write(xml_str)
 
     def parse(self):
