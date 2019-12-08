@@ -4,5 +4,5 @@ from labor import labor
 from dataWorker import dataWorker
 
 parser = dataWorker("2/data.xml")
-parser.parse()
-parser.writeXml()
+parser.parseXml()
+parser.writeDb("database.sqlite")

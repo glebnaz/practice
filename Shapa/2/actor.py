@@ -8,7 +8,7 @@ class actor:
 
     def setId(self,value):
         print("Set ID")
-        self.__id = value
+        self.__Id = value
 
     def setfirstName(self,value):
           print("Set firstName")
