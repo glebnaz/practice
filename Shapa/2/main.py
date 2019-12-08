@@ -6,3 +6,4 @@ from dataWorker import dataWorker
 parser = dataWorker("2/data.xml")
 parser.parseXml()
 parser.writeDb("database.sqlite")
+parser.readDb("database.sqlite")

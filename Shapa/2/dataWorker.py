@@ -70,6 +70,23 @@ class dataWorker:
         conn.commit()
         conn.close()
 
+    def readDb(self,inp):
+        a = actor("Gleb","Nazemnov","Andreevich","glavnui","15")
+        p = performances("12 стульев","2015","322")
+        lab = labor(a,p,"Остап Бендер","20000000")
+        conn = db.connect(inp)
+        curs = conn.cursor()
+        curs.execute('select * from actor')
+        data=curs.fetchall()
+        for r in data:print(r)
+        curs.execute('select * from performance')
+        data=curs.fetchall()
+        for r in data:print(r)
+        curs.execute('select * from labor')
+        data=curs.fetchall()
+        for r in data:print(r)
+        conn.close()
+
     def parseActor(self):
         doc = xml.dom.minidom.parse(self.filename)
         actors = doc.getElementsByTagName("actor")
