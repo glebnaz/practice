@@ -38,11 +38,4 @@ class types():
         return self.__conditional
 
     def getId(self):
-        return self.__Id                
-
-
-
-
-
-    def __str__(self):
-        return str(self.code) + ' ' + self.__name + ' ' + self.__yp + ' ' + self.__rate + ' ' + self.__term
+        return self.__Id
