@@ -7,7 +7,7 @@ class credit:
 
     def setId(self,value):
         print("Set ID")
-        self.__id = value
+        self.__Id = value
 
     def setTypeOfCredit(self,value):
         print("Set typeOfCredit")

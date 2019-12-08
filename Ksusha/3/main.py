@@ -4,5 +4,7 @@ from credit import credit
 from dataWorker import dataWorker
 
 parser = dataWorker("data.xml")
-parser.parse()
+parser.parseXml()
 parser.writeXml()
+parser.writeDb("database.sqllite")
+parser.readDb("database.sqllite")

@@ -2,6 +2,35 @@ import xml.dom.minidom
 from typeOfCredit import types
 from client import client
 from credit import credit
+import sqlite3 as db
+
+emptydb = """
+PRAGMA foreign_keys = ON;
+
+create table type_of_credit
+(id integer primary key,
+name text,
+conditional text,
+rate text,
+term text);
+
+create table client
+(id integer primary key,
+name text,
+adress text,
+phone text,
+person text);
+
+
+create table credits
+(id integer primary key autoincrement,
+type_of_credit integer references type_of_credit(id) on update cascade on delete cascade,
+client integer references client(id) on update cascade on delete cascade,
+data text,
+cost text,
+unique(type_of_credit,client))"""
+
+
 class dataWorker:
     def __init__(self,filename=""):
         self.filename = filename
@@ -20,9 +49,56 @@ class dataWorker:
             phone = Client.getAttribute("phone")
             person = Client.getAttribute("person")
             newClient = client(name,typeOfProperty,adress,phone,person)
+            newClient.setId(id)
             self.clientsList[id] = newClient
         print(self.clientsList)
 
+    def writeDb(self,out):
+        conn = db.connect(out)
+        curs = conn.cursor()
+        curs.executescript(emptydb) #if you start at first time
+        self.parseXml()
+         #write clients
+        for clientsId in self.clientsList:
+            clients = self.clientsList[clientsId]
+            curs.execute("insert into client(id,name,adress,phone,person)values('%s','%s','%s','%s','%s')"%(
+             clientsId,
+             clients.getName(),
+             clients.getAdress(),
+             clients.getPhone(),
+             clients.getPerson()))
+        for typeOfCreditId in self.typeOfCreditsList:
+            typeOfCredit = self.typeOfCreditsList[typeOfCreditId]
+            curs.execute("insert into type_of_credit(id,name,conditional,rate,term)values('%s','%s','%s','%s','%s')"%(
+            str(typeOfCreditId),
+            str(typeOfCredit.getName()),
+            str(typeOfCredit.getConditional()),
+            str(typeOfCredit.getRate()),
+            str(typeOfCredit.getTerm())))
+        for creditId in self.creditList:
+            credit = self.creditList[creditId]
+            curs.execute("insert into credits(id,type_of_credit,client,data,cost)values('%s','%s','%s','%s','%s')"%(
+            str(creditId),
+            str(credit.getTypeOfCredit().getId()),
+            str(credit.getClient().getId()),
+            str(credit.getData()),
+            str(credit.getCost())))
+        conn.commit()
+        conn.close()
+
+    def readDb(self,inp):
+        conn = db.connect(inp)
+        curs = conn.cursor()
+        curs.execute('select * from client')
+        data=curs.fetchall()
+        for r in data:print(r)
+        curs.execute('select * from type_of_credit')
+        data=curs.fetchall()
+        for r in data:print(r)
+        curs.execute('select * from credits')
+        data=curs.fetchall()
+        for r in data:print(r)
+        conn.close()
 
     def parseTypeOfCredit(self):
         doc = xml.dom.minidom.parse(self.filename)
@@ -34,6 +110,7 @@ class dataWorker:
             rate = TypeOfCredit.getAttribute("rate")
             term = TypeOfCredit.getAttribute("term")
             newtypeOfCredit = types(name,conditional,rate,term)
+            newtypeOfCredit.setId(id)
             self.typeOfCreditsList[id] = newtypeOfCredit
         print(self.typeOfCreditsList)
     def parseCredit(self):
@@ -48,6 +125,7 @@ class dataWorker:
             client = self.clientsList[clientId]
             typeOfCredit = self.typeOfCreditsList[typeOfCreditId]
             newCredit = credit(typeOfCredit,client,data,cost)
+            newCredit.setId(id)
             self.creditList[id] = newCredit
         print(self.creditList)
 
@@ -100,11 +178,9 @@ class dataWorker:
             credits.appendChild(creditXml)
         root.appendChild(credits)
         xml_str = doc.toprettyxml(indent="  ")
-        file = "new"+self.filename
-        with open(file, "w") as f:
+        with open("new.xml", "w") as f:
             f.write(xml_str)
-
-    def parse(self):
+    def parseXml(self):
         self.parseClient()
         self.parseTypeOfCredit()
         self.parseCredit()
