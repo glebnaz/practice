@@ -1,11 +1,11 @@
-class types():
-    def __init__(self,name='',conditional='',rate,term):
+class types:
+    def __init__(self,name='',conditional='',rate=0.0,term=""):
         self.setName(name)
         self.setRate(rate)
         self.setTerm(term)
         self.setConditional(conditional)
 
-    def setId(self.value):
+    def setId(self,value):
         print("Set ID")
         self.__id = value
 
@@ -39,3 +39,7 @@ class types():
 
     def getId(self):
         return self.__Id
+
+    def __str__(self):
+        return self.getName() + ", " + self.getConditional() + ", " + str(self.getRate()) + ", " \
+            + self.getTerm()+"."
