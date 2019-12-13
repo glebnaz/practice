@@ -101,8 +101,20 @@ class dataWorker:
         root.appendChild(credits)
         xml_str = doc.toprettyxml(indent="  ")
         file = "new"+self.filename
-        with open(file, "w") as f:
+        with open("new.xml", "w") as f:
             f.write(xml_str)
+
+    def addCredit(self,credit,id):
+        self.creditList[id]=credit
+        print("add new credit")
+
+    def addClient(self,client,id):
+        self.clientsList[id]=client
+        print("add new client")
+
+    def addTypeOfCredit(self,type,id):
+        self.typeOfCreditsList[id]=type
+        print("add new type of recdit")
 
     def parse(self):
         self.parseClient()
