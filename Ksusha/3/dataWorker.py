@@ -180,6 +180,28 @@ class dataWorker:
         xml_str = doc.toprettyxml(indent="  ")
         with open("new.xml", "w") as f:
             f.write(xml_str)
+
+    def addCredit(self,credit,id):
+        self.creditList[id]=credit
+        print("add new credit")
+
+    def addClient(self,client,id):
+        self.clientsList[id]=client
+        print("add new client")
+
+    def addTypeOfCredit(self,type,id):
+        self.typeOfCreditsList[id]=type
+        print("add new type of recdit")
+
+    def delCredit(self,id):
+        del self.creditList[id]
+
+    def delClient(self,id):
+        del self.clientsList[id]
+
+    def delTypeOfCredit(self,id):
+        del self.typeOfCreditsList[id]        
+
     def parseXml(self):
         self.parseClient()
         self.parseTypeOfCredit()

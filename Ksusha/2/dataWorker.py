@@ -116,6 +116,15 @@ class dataWorker:
         self.typeOfCreditsList[id]=type
         print("add new type of recdit")
 
+    def delCredit(self,id):
+        del self.creditList[id]
+
+    def delClient(self,id):
+        del self.clientsList[id]
+
+    def delTypeOfCredit(self,id):
+        del self.typeOfCreditsList[id]
+
     def parse(self):
         self.parseClient()
         self.parseTypeOfCredit()
