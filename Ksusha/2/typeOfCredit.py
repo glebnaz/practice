@@ -38,7 +38,7 @@ class types:
         return self.__conditional
 
     def getId(self):
-        return self.__Id
+        return self.__id
 
     def __str__(self):
         return self.getName() + ", " + self.getConditional() + ", " + str(self.getRate()) + ", " \

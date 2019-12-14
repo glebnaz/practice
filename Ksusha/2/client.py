@@ -46,7 +46,7 @@ class client:
         return self.__typeOfProperty
 
     def getId(self):
-        return self.__Id
+        return self.__id
 
     def __str__(self):
         return self.getName() + ", " + self.getTypeOfProperty() + ", " + self.getPhone() + ", " \

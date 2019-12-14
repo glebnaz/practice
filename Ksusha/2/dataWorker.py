@@ -20,6 +20,7 @@ class dataWorker:
             phone = Client.getAttribute("phone")
             person = Client.getAttribute("person")
             newClient = client(name,typeOfProperty,adress,phone,person)
+            newClient.setId(id)
             self.clientsList[id] = newClient
         print(self.clientsList)
 
@@ -34,6 +35,7 @@ class dataWorker:
             rate = TypeOfCredit.getAttribute("rate")
             term = TypeOfCredit.getAttribute("term")
             newtypeOfCredit = types(name,conditional,rate,term)
+            newtypeOfCredit.setId(id)
             self.typeOfCreditsList[id] = newtypeOfCredit
         print(self.typeOfCreditsList)
     def parseCredit(self):
@@ -48,6 +50,7 @@ class dataWorker:
             client = self.clientsList[clientId]
             typeOfCredit = self.typeOfCreditsList[typeOfCreditId]
             newCredit = credit(typeOfCredit,client,data,cost)
+            newCredit.setId(id)
             self.creditList[id] = newCredit
         print(self.creditList)
 
@@ -55,7 +58,6 @@ class dataWorker:
         doc = xml.dom.minidom.Document()
         root = doc.createElement('bank')
         doc.appendChild(root)
-        clients = doc.createElement("clients")
         for clientId in self.clientsList:
             client = self.clientsList[clientId]
             clientXml = doc.createElement("client")
@@ -64,9 +66,8 @@ class dataWorker:
             clientXml.setAttribute('adress', client.getAdress())
             clientXml.setAttribute('phone', client.getPhone())
             clientXml.setAttribute('person', client.getPerson())
-            clients.appendChild(clientXml)
-        root.appendChild(clients)
-        typeOfCredits = doc.createElement("typeOfCredits")
+            clientXml.setAttribute("id",clientId)
+            root.appendChild(clientXml)
         for typeOfCreditId in self.typeOfCreditsList:
             typeOfCredit = self.typeOfCreditsList[typeOfCreditId]
             typeOfCreditXml = doc.createElement("typeOfCredit")
@@ -74,31 +75,17 @@ class dataWorker:
             typeOfCreditXml.setAttribute('conditional', typeOfCredit.getConditional())
             typeOfCreditXml.setAttribute('rate', typeOfCredit.getRate())
             typeOfCreditXml.setAttribute('term', typeOfCredit.getTerm())
-            typeOfCredits.appendChild(typeOfCreditXml)
-        root.appendChild(typeOfCredits)
-        credits = doc.createElement("credits")
+            typeOfCreditXml.setAttribute("id",typeOfCreditId)
+            root.appendChild(typeOfCreditXml)
         for creditId in self.creditList:
             credit = self.creditList[creditId]
             creditXml = doc.createElement("credit")
-            creditXml.setAttribute("data",credit.getData())
             creditXml.setAttribute("cost",credit.getCost())
-            typeOfCredit = credit.getTypeOfCredit()
-            typeOfCreditXmlcredit = doc.createElement("typeOfCredit")
-            typeOfCreditXmlcredit.setAttribute('name', typeOfCredit.getName())
-            typeOfCreditXmlcredit.setAttribute('conditional', typeOfCredit.getConditional())
-            typeOfCreditXmlcredit.setAttribute('rate', typeOfCredit.getRate())
-            typeOfCreditXmlcredit.setAttribute('term', typeOfCredit.getTerm())
-            creditXml.appendChild(typeOfCreditXmlcredit)
-            client = credit.getClient()
-            patientXmlcredit = doc.createElement("client")
-            patientXmlcredit.setAttribute('name', client.getName())
-            patientXmlcredit.setAttribute('typeOfProperty', client.getTypeOfProperty())
-            patientXmlcredit.setAttribute('adress', client.getAdress())
-            patientXmlcredit.setAttribute('phone', client.getPhone())
-            patientXmlcredit.setAttribute('person', client.getPerson())
-            creditXml.appendChild(patientXmlcredit)
-            credits.appendChild(creditXml)
-        root.appendChild(credits)
+            creditXml.setAttribute("data",credit.getData())
+            creditXml.setAttribute("id",creditId)
+            creditXml.setAttribute("client",credit.getClient().getId())
+            creditXml.setAttribute("typeOfCredit",credit.getTypeOfCredit().getId())
+            root.appendChild(creditXml)
         xml_str = doc.toprettyxml(indent="  ")
         file = "new"+self.filename
         with open("new.xml", "w") as f:
