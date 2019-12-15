@@ -1,0 +1,11 @@
+<autopark>
+  <client id ="1" firsName="gleb" lastName="Nazemnov" fatherName="Andreevich" phone="500-500" adress="Saratov"></client>
+  <client id ="2" firsName="Nazemnov" lastName="Gleb" fatherName="Ilych" phone="12031949" adress="Moscow"></client>
+  <client id ="3" firsName="Net" lastName="Rubin" fatherName="Penza" phone="222-222" adress="Medvedev"></client>
+
+  <auto id="1" mark="bmw" cost="13" case_cost="1111" typ="legovai"></auto>
+  <auto id="2" mark="ford" cost="42424" case_cost="555" typ="leg"></auto>
+  <auto id="3" mark="mercedes" cost="43242" case_cost="23432" typ="leg"></auto>
+
+  <case id="1" client="1" auto="2" dateout="20.11.1998" datereturn="11.12.2011"></case>
+</autopark>
