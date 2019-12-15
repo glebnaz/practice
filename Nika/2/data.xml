@@ -1,0 +1,12 @@
+<hospital>
+  <doctor id ="1" first_name="Gleb" last_name="Nazemnov" father_name="Andreevich" category="1" specialty="Terapevt"></doctor>
+  <doctor id ="2" first_name="Lexa" last_name="Gluchov" father_name="Vasilievich" category="1" specialty="Urolog"></doctor>
+  <doctor id ="3" first_name="Maxim" last_name="Rubin" father_name="Vladimirovich" category="2" specialty="Genigolog"></doctor>
+
+  <patient id="1" first_name="Pavel" last_name="Ruharov" father_name="Andreevich" date_of_birth ="20.11.1998"></patient>
+  <patient id="2" first_name="Artem" last_name="HIstory" father_name="Andreevich" date_of_birth ="20.12.1998"></patient>
+  <patient id="3" first_name="Vova" last_name="Putin" father_name="Glebocich" date_of_birth ="21.12.1998"></patient>
+
+  <appeal id="1" doctor="1" patient="2" diagnosis="bolen" cost="15"></appeal>
+
+</hospital>

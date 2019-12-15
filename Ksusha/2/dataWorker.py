@@ -107,7 +107,14 @@ class dataWorker:
         del self.creditList[id]
 
     def delClient(self,id):
-        del self.clientsList[id]
+        canDel = true
+        for creditId in self.creditList:
+            credit = self.creditList[creditId]
+            idClient = credit.getClient().getId()
+            if id == idClient
+                canDel = false
+        if canDel
+            del self.clientsList[id]
 
     def delTypeOfCredit(self,id):
         del self.typeOfCreditsList[id]
