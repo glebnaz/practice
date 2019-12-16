@@ -64,7 +64,6 @@ class dataxml:
         doc = xml.dom.minidom.Document()
         root = doc.createElement('hospital')
         doc.appendChild(root)
-        doctors = doc.createElement("doctors")
         for doctorId in self.doctorsList:
             doctor = self.doctorsList[doctorId]
             doctorXml = doc.createElement("doctor")
@@ -73,9 +72,7 @@ class dataxml:
             doctorXml.setAttribute('father_name', doctor.get_father_name())
             doctorXml.setAttribute('category', doctor.get_category())
             doctorXml.setAttribute('specialty', doctor.get_specialty())
-            doctors.appendChild(doctorXml)
-        root.appendChild(doctors)
-        patients = doc.createElement("patients")
+            root.appendChild(doctorXml)
         for patientId in self.patientsList:
             patient = self.patientsList[patientId]
             patientXml = doc.createElement("patient")
@@ -83,14 +80,10 @@ class dataxml:
             patientXml.setAttribute('last_name', patient.get_last_name())
             patientXml.setAttribute('father_name', patient.get_father_name())
             patientXml.setAttribute('date_of_birth', patient.get_date_of_birth())
-            patients.appendChild(patientXml)
-        root.appendChild(patients)
-        appeals = doc.createElement("appeals")
+            root.appendChild(patientXml)
         for appealId in self.appealList:
             appeal = self.appealList[appealId]
             appealXml = doc.createElement("appeal")
-            appealXml.setAttribute("diagnosis",appeal.get_Diagnosis())
-            appealXml.setAttribute("cost",appeal.get_Cost())
             doctor = appeal.get_Doctor()
             doctorXmlAppeal = doc.createElement("doctor")
             doctorXmlAppeal.setAttribute('first_name', doctor.get_first_name())
@@ -106,8 +99,8 @@ class dataxml:
             patientXmlAppeal.setAttribute('father_name', patient.get_father_name())
             patientXmlAppeal.setAttribute('date_of_birth', patient.get_date_of_birth())
             appealXml.appendChild(patientXmlAppeal)
-            appeals.appendChild(appealXml)
-        root.appendChild(appeals)
+            root.appendChild(appealXml)
         xml_str = doc.toprettyxml(indent="  ")
         with open("newData.xml", "w") as f:
             f.write(xml_str)
+    
