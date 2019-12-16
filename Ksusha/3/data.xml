@@ -1,0 +1,11 @@
+<bank>
+  <client id ="1" name="Sgu" typeOfProperty="Gos" adress="Saratov" phone="500-500" person="Ignatiev"></client>
+  <client id ="2" name="Magazin" typeOfProperty="Chastnay" adress="Moscow" phone="12031949" person="Putin"></client>
+  <client id ="3" name="Net" typeOfProperty="Rubin" adress="Penza" phone="222-222" person="Medvedev"></client>
+
+  <typeOfCredit id="1" name="Best" conditional="HAVE" rate="1111" term ="14132"></typeOfCredit>
+  <typeOfCredit id="2" name="False" conditional="HIstory" rate="555" term ="15"></typeOfCredit>
+  <typeOfCredit id="3" name="sfs" conditional="sfsfs" rate="dgds" term ="sfgf"></typeOfCredit>
+
+  <credit id="1" client="1" typeOfCredit="2" data="20.11.1998" cost="300"></credit>
+</bank>

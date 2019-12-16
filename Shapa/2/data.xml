@@ -1,0 +1,11 @@
+<bank>
+  <actor id ="1" firsName="Sgu" lastName="Gos" fatherName="Saratov" rank="500-500" expirience="Ignatiev"></actor>
+  <actor id ="2" firsName="Magazin" lastName="Chastnay" fatherName="Moscow" rank="12031949" expirience="Putin"></actor>
+  <actor id ="3" firsName="Net" lastName="Rubin" fatherName="Penza" rank="222-222" expirience="Medvedev"></actor>
+
+  <performances id="1" name="Best" year="HAVE" budget="1111"></performances>
+  <performances id="2" name="False" year="HIstory" budget="555"></performances>
+  <performances id="3" name="sfs" year="sfsfs" budget="dgds"></performances>
+
+  <labor id="1" actor="1" performances="2" role="20.11.1998" cost="300"></labor>
+</bank>
