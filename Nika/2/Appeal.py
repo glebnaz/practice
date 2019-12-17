@@ -1,12 +1,17 @@
 #Обращения (Врач, Пациент, Дата обращения, Диагноз, Стоимость лечения).
 import datetime
 class Appeal:
-    def __init__(self, Doctor, Patient,Diagnosis='',Cost=0.0):
+    def __init__(self, Doctor, Patient,Diagnosis,Data,Cost):
         self.set_Doctor(Doctor)
-        self.set_Date()
+        self.set_Date(Data)
         self.set_Cost(Cost)
         self.set_Diagnosis(Diagnosis)
         self.set_Patient(Patient)
+
+
+
+    def getId(self):
+        return self.__Id
 
     def get_Doctor(self):
         return self.__Doctor
@@ -23,14 +28,17 @@ class Appeal:
     def get_Date(self):
         return self.__Date
 
-    def set_Date(self):
-        self.__Date = datetime.datetime.now()
+    def set_Date(self,value):
+        self.__Date = value
 
     def get_Diagnosis(self):
         return self.__Diagnosis
 
     def set_Diagnosis(self, d):
         self.__Diagnosis = d
+
+    def setId(self, d):
+        self.__Id = d
 
     def get_Cost(self):
         return self.__Cost

@@ -7,6 +7,6 @@
   <patient id="2" first_name="Artem" last_name="HIstory" father_name="Andreevich" date_of_birth ="20.12.1998"></patient>
   <patient id="3" first_name="Vova" last_name="Putin" father_name="Glebocich" date_of_birth ="21.12.1998"></patient>
 
-  <appeal id="1" doctor="1" patient="2" diagnosis="bolen" cost="15"></appeal>
+  <appeal id="1" doctor="1" patient="2" diagnosis="bolen" data="12.12.2019" cost="15"></appeal>
 
 </hospital>

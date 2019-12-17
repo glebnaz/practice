@@ -9,6 +9,12 @@ class Doctor:
     def get_first_name(self):
         return self.__first_name
 
+    def getId(self):
+        return self.__Id
+
+    def setId(self, d):
+        self.__Id = d     
+
     def set_first_name(self, name):
         self.__first_name = name
 
