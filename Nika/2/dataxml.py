@@ -97,6 +97,7 @@ class dataxml:
             appealXml.setAttribute("diagnosis",appeal.get_Diagnosis())
             appealXml.setAttribute("data",appeal.get_Date())
             appealXml.setAttribute("cost",appeal.get_Cost())
+            appealXml.setAttribute("id",appealId)
             root.appendChild(appealXml)
         xml_str = doc.toprettyxml(indent="  ")
         with open("newData.xml", "w") as f:
