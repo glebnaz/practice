@@ -8,30 +8,24 @@ class case:
         self.setdatereturn(datereturn)
 
     def setId(self,value):
-        print("Set ID")
         self.__id = value
 
     def setclient(self,value):
-        print("Set client")
         self.__client = value
 
     def setautos(self,value):
-      print("Set autos")
       self.__autos = value
 
     def setdatereturn(self,value):
-      print("Set datereturn")
       self.__datereturn = value
 
     def setdateout(self,value):
-        print("Set phone")
         self.__dateout = value
 
     def getclient(self):
         return self.__client
 
     def getautos (self):
-        print("return ")
         return self.__autos
 
 
@@ -39,7 +33,7 @@ class case:
         return self.__dateout
 
     def getId(self):
-        return self.__Id
+        return self.__id
 
     def getdatereturn(self):
         return self.__datereturn

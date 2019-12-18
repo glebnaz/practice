@@ -6,25 +6,18 @@ class auto:
         self.setcost(cost)
 
     def setId(self,value):
-        print("Set ID")
         self.__id = value
 
-
-
     def setmark(self,value):
-        print("Set mark")
         self.__mark = value
 
     def settyp(self,value):
-        print("Set type")
         self.__typ = value
 
     def setcaseCost(self,value):
-        print("Set caseCost")
         self.__caseCost = value
 
     def setcost(self,value):
-        print("Set cost")
         self.__cost = value
 
     def getmark(self):

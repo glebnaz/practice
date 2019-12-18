@@ -10,6 +10,6 @@ ca = case(c,a,"22.22.22","22.22.22")
 print(c)
 print(a)
 
-parser = dataWorker("2/data.xml")
+parser = dataWorker("/Users/glebnazemnov/Documents/#main/#WORK/sgu /4/oop/practice/Zhenia/2/data.xml")
 parser.parseXml()
 parser.writeXml()
